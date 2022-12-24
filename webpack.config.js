@@ -20,8 +20,6 @@ const jsLoaders = () => {
 
   if (isDev) {
     loaders.push({
-      test: /\.js/,
-      exclude: /node_modules/,
       loader: "eslint-loader",
     });
   }
