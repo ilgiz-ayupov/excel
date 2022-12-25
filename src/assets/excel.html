@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+  <body>
+    <div id="app">
+      <div class="excel">
+        <div class="excel__header">
+          <input
+            type="text"
+            class="excel__header-input"
+            value="Новая таблица"
+          />
+
+          <div>
+            <div class="excel__header-button">
+              <span class="material-icons">delete</span>
+            </div>
+            <div class="excel__header-button">
+              <span class="material-icons">exit_to_app</span>
+            </div>
+          </div>
+        </div>
+        <div class="excel__toolbar">
+          <div class="excel__toolbar-button">
+            <span class="material-icons">format_align_left</span>
+          </div>
+          <div class="excel__toolbar-button">
+            <span class="material-icons">format_align_center</span>
+          </div>
+          <div class="excel__toolbar-button">
+            <span class="material-icons">format_align_right</span>
+          </div>
+          <div class="excel__toolbar-button">
+            <span class="material-icons">format_bold</span>
+          </div>
+          <div class="excel__toolbar-button">
+            <span class="material-icons">format_italic</span>
+          </div>
+          <div class="excel__toolbar-button">
+            <span class="material-icons">format_underline</span>
+          </div>
+        </div>
+        <div class="excel__formula">
+          <div class="excel__formula-info">fx</div>
+          <div
+            class="excel__formula-input"
+            contenteditable
+            spellcheck="false"
+          ></div>
+        </div>
+        <div class="excel__table">
+          <div class="excel__table-row">
+            <div class="excel__table-number"></div>
+            <div class="excel__table-data">
+              <div class="excel__table-column">A</div>
+              <div class="excel__table-column">B</div>
+              <div class="excel__table-column">C</div>
+            </div>
+          </div>
+
+          <div class="excel__table-row">
+            <div class="excel__table-number">1</div>
+            <div class="excel__table-data">
+              <div class="excel__table-cell selected" contenteditable>1231</div>
+              <div class="excel__table-cell" contenteditable>asdfsdf</div>
+              <div class="excel__table-cell" contenteditable>
+                sdafsfsdfbggjn
+              </div>
+            </div>
+          </div>
+
+          <div class="excel__table-row">
+            <div class="excel__table-number">2</div>
+            <div class="excel__table-data">
+              <div class="excel__table-cell">1231</div>
+              <div class="excel__table-cell">asdfsdf</div>
+              <div class="excel__table-cell">sdafsfsdfbggjn</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
