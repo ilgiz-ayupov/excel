@@ -14,6 +14,15 @@ class Dom {
     return this.$el.innerHTML;
   }
 
+  css(styles = {}) {
+    if (styles) {
+      Object.keys(styles).forEach((property) => {
+        this.$el.style[property] = styles[property];
+      });
+      return this;
+    }
+  }
+
   clear() {
     this.html("");
     return this;
@@ -39,6 +48,26 @@ class Dom {
 
   off(eventType, callback) {
     this.$el.removeEventListener(eventType, callback);
+  }
+
+  closest(selector) {
+    return $(this.$el.closest(selector));
+  }
+
+  getCoords() {
+    return this.$el.getBoundingClientRect();
+  }
+
+  find(selector) {
+    return this.$el.querySelector(selector);
+  }
+
+  findAll(selector) {
+    return this.$el.querySelectorAll(selector);
+  }
+
+  get data() {
+    return this.$el.dataset;
   }
 }
 

@@ -32,16 +32,24 @@ function createRow(number) {
 }
 
 const toRow = (content, number = "") =>
-`
-      <div class="excel__table-row">
-      <div class="excel__table-number">${number}</div>
+  `
+    <div class="excel__table-row" data-type="resizable">
+      <div class="excel__table-number">
+        ${number}
+        ${number >= 1 ? '<div class="row-resize" data-resize="row"></div>' : ""}
+      </div>
       <div class="excel__table-data">
         ${content}
       </div>
     </div>
 `;
 
-const toColumn = (content) =>
-  `<div class="excel__table-column">${content}</div>`;
+const toColumn = (content, index) =>
+  `
+  <div class="excel__table-column" data-type="resizable" data-col="${index}">
+    ${content}
+    <div class="col-resize" data-resize="column"></div>
+  </div>`;
 
-const toCell = () => `<div class="excel__table-cell" contenteditable></div>`;
+const toCell = (_, index) =>
+  `<div class="excel__table-cell" contenteditable data-col="${index}"></div>`;
