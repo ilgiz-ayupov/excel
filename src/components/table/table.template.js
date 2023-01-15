@@ -7,7 +7,7 @@ export function createTable(rowsCount = 15) {
   const rows = [];
   rows.push(createTitles());
 
-  for (let row = 1; row < rowsCount + 1; row++) {
+  for (let row = 0; row < rowsCount + 1; row++) {
     rows.push(createRow(row));
   }
   return rows.join("");
@@ -25,10 +25,10 @@ function createTitles() {
   return toRow(titles);
 }
 
-function createRow(number) {
+function createRow(row) {
   const colsCount = CODES.Z - CODES.A + 1;
-  const cols = new Array(colsCount).fill("").map(toCell).join("");
-  return toRow(cols, number);
+  const cols = new Array(colsCount).fill("").map(toCell(row)).join("");
+  return toRow(cols, row + 1);
 }
 
 const toRow = (content, number = "") =>
@@ -51,5 +51,11 @@ const toColumn = (content, index) =>
     <div class="col-resize" data-resize="column"></div>
   </div>`;
 
-const toCell = (_, index) =>
-  `<div class="excel__table-cell" contenteditable data-col="${index}"></div>`;
+const toCell = (row) => (_, col) =>
+  `<div 
+    class="excel__table-cell" 
+    contenteditable 
+    data-type="cell"
+    data-col="${col}"
+    data-id="${row}:${col}"
+  ></div>`;
