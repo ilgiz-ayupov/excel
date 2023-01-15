@@ -1,11 +1,13 @@
+import { $ } from "@core/dom";
 import { ExcelComponent } from "@core/ExcelComponent";
 
 export class Formula extends ExcelComponent {
   static className = "excel__formula";
 
-  constructor($root) {
+  constructor($root, options) {
     super($root, {
-      listeners: ["input"],
+      listeners: ["input", "keydown"],
+      ...options,
     });
   }
 
@@ -13,6 +15,7 @@ export class Formula extends ExcelComponent {
     return `
       <div class="excel__formula-info">fx</div>
       <div
+        data-type="formula"
         class="excel__formula-input"
         contenteditable
         spellcheck="false"
@@ -20,8 +23,29 @@ export class Formula extends ExcelComponent {
     `;
   }
 
+  init() {
+    super.init();
+
+    const $formula = this.$root.find('[data-type="formula"]');
+    this.$onSubscribe("table:select", (content) => {
+      $formula.text(content);
+    });
+
+    this.$onSubscribe("table:input", (content) => {
+      $formula.text(content);
+    });
+  }
+
   onInput(event) {
-    console.log(this.$root);
-    console.log("Formula: onInput", event.target.textContent);
+    const $formula = $(event.target);
+    this.$createSubscribe("formula:input", $formula.text());
+  }
+
+  onKeydown(event) {
+    const keys = ["Enter", "Tab"];
+    if (keys.includes(event.key)) {
+      event.preventDefault();
+      this.$createSubscribe("formula:done");
+    }
   }
 }
